@@ -1,12 +1,10 @@
 package org.openshift;
-import
-import
-import
-import
-java.sql.Connection;
-java.sql.DriverManager;
-java.sql.ResultSet;
-java.sql.Statement;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 public class InsultGenerator {
 public String generateInsult() {
 String vowels = "AEIOU";
@@ -21,8 +19,7 @@ String password = System.getenv("PGPASSWORD");
 Connection connection = DriverManager.getConnection(databaseURL, username,
 password);
 if (connection != null) {
-String SQL = "select a.string AS first, b.string AS second, c.string AS noun
-from short_adjective a , long_adjective b, noun c ORDER BY random() limit 1";
+String SQL = "select a.string AS first, b.string AS second, c.string AS noun from short_adjective a , long_adjective b, noun c ORDER BY random() limit 1";
 Statement stmt = connection.createStatement();
 ResultSet rs = stmt.executeQuery(SQL);
 while (rs.next()) {
